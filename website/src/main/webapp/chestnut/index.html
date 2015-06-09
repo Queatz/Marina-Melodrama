@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Chestnut Mini-Mansion • Marina Melodrama</title>
+		<link rel="stylesheet" type="text/css" href="static/styles/style.css">
+		<script type="text/javascript">
+			function ajax(url, data, callback) {
+			    var xmlhttp = new XMLHttpRequest();
+
+			    xmlhttp.onreadystatechange = function() {
+			        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+			           callback(xmlhttp);
+			        }
+			    }
+
+			    xmlhttp.open("POST", url, true);
+			    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			    xmlhttp.send(data);
+			}
+
+			function stayInTheKnow() {
+				var form = document.getElementById('stayInTheKnow');
+				var email = form.email.value.trim();
+
+				if(email) {
+			        form.submit.value = "Sending...";
+			        form.submit.disabled = true;
+
+					ajax("/api/keep-in-touch", "email=" + encodeURIComponent(email), function(xmlhttp) {
+			           if(xmlhttp.status == 200) {
+			               form.submit.value = "Thank you!";
+			               form.email.hidden = true;
+			               form.email.value = "";
+			           }
+			           else {
+			              form.submit.value = "That didn't work";
+			              form.submit.disabled = false;
+			           }
+					});
+				}
+				else {
+					form.email.focus();
+				}
+			}
+		</script>
+	</head>
+	<body>
+
+		<div class="navigator">
+			<a href="/">Marina Melodrama</a>
+			<span style="color:rgba(255, 255, 255, .5); font-size: 80%;">❯❯</span>
+			<a href="/chestnut">Chestnut Mini-Mansion</a>
+		</div>
+
+		<div class="full-page welcome-background">
+			
+			<div class="text">
+				VISIT CHESTNUT'S MINI-MANSION
+			</div>
+
+		</div>
+
+		<div class="full-page details">
+			
+			<div>
+				<div class="section-header">ABOUT THE MINI-MANSION</div>
+				<div class="section-detail">
+					<p>Located on tell-tale Chestnut St. in San Francisco's Marina, the Mini-Mansion serves as a communal go-to for creative development, and as a shared knowledgebase of success close to home, and in the global landscape.</p>
+					<p>In association with the members, their offers and their knowledge, and the parties organized at the Mini-Mansion, members have access to an invaluable mesh-network of creative know-how.</p>
+					<p></p>
+				</div>
+			</div>
+
+			<div>
+				<div class="section-header">COMMON SERVICES</div>
+				<div class="section-detail">
+					<ul>
+						<li>Character Upgrading</li>
+						<li>Android Development training</li>
+						<li>Python Development training</li>
+						<li>Web Development training</li>
+						<li>3D Animation training</li>
+						<li>Classical Music Composition training</li>
+						<li>Sewing training</li>
+						<li>English Writing training and review</li>
+					</ul>
+				</div>
+			</div>
+
+			<div>
+				<div class="section-header">THE INSIDE</div>
+				<div class="section-detail">
+					<ul>
+						<li>Couch seating for four</li>
+						<li>Table seating for two</li>
+						<li>Bar seating for two, with demand seating for up to four</li>
+						<li>A desk in the design room, which seats one</li>
+						<li>A mini theatre</li>
+						<li>A fridge full of good things to eat</li>
+						<li>A piano</li>
+						<li>Chargers for Macbooks</li>
+						<li>A mini fashion studio</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div>
+				<div class="section-header">WHO WE ARE</div>
+				<div class="section-detail">
+					<p>Our members are driven, passionate creators, all set on one singled out mission: to upgrade the world, and to do it fast.</p>
+					<p>We network close to us, as well as globally, and maintain an "always available" persona.</p>
+					<p></p>
+				</div>
+			</div>
+
+			<div>
+				<div class="section-header">STAY IN THE KNOW</div>
+				<div class="section-detail">
+					<p>
+						<center>
+							<form id="stayInTheKnow" method="post" action="javascript: stayInTheKnow();">
+								<input type="text" name="email" placeholder="Your Email Address" />
+								<input name="submit" type="submit" value="Keep in touch" />
+							</form>
+						</center>
+					</p>
+				</div>
+			</div>
+
+			<div>
+				<div class="section-header">VISITING</div>
+				<div class="section-detail">
+					<p>For more information on visiting the Mini-Mansion, the available services, the network, or for any other matter, we would love to hear from you!  Please write to:<br /><center>chestnut@marinamelodrama.com</center></p>
+					<p></p>
+					<p></p>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="sunrise">
+			<div></div>
+		</div>
+
+	</body>
+</html>
